@@ -1,0 +1,16 @@
+CLASSIFICATION REPORT - BEST MODEL: Decision Tree
+============================================================
+
+                precision    recall  f1-score   support
+
+No Failure (0)       0.99      0.99      0.99      1932
+   Failure (1)       0.68      0.63      0.66        68
+
+      accuracy                           0.98      2000
+     macro avg       0.83      0.81      0.82      2000
+  weighted avg       0.98      0.98      0.98      2000
+
+============================================================
+Confusion Matrix:
+TN: 1912, FP: 20
+FN: 25, TP: 43

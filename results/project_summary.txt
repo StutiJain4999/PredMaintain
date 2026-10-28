@@ -1,0 +1,65 @@
+PREDICTIVE MAINTENANCE OF INDUSTRIAL MACHINES USING MACHINE LEARNING
+================================================================================
+Dataset: AI4I 2020 Predictive Maintenance Dataset (ai4i2020.csv)
+Total Samples: 10000
+Total Features Evaluated: 8
+Target: Machine failure (0 = No Failure, 1 = Failure)
+
+FIVE PROJECT OBJECTIVES & KEY FINDINGS:
+--------------------------------------------------------------------------------
+1. Machine Failure Distribution:
+   - No Failure (0): 9661 machines (96.61%)
+   - Failure (1):    339 machines (3.39%)
+   - Finding: Severe class imbalance (~3.39% failures), requiring F1-score & recall
+     prioritization over raw accuracy.
+
+2. Product Type and Machine Failure:
+   - Distribution: L (Low) = 6000, M (Medium) = 2997, H (High) = 1003
+   - Failure Rates: {'H': 2.09, 'L': 3.92, 'M': 2.77}
+   - Finding: Low-quality variant (L) experiences higher failure rates compared to
+     Medium (M) and High (H) quality variants due to lower tolerances.
+
+3. Temperature Analysis:
+   - Feature Engineered: Temperature Difference = Process Temp - Air Temp [K]
+   - Non-Failure Average Temp Diff: 10.02 K
+   - Failure Average Temp Diff:     9.40 K
+   - Finding: Machines experiencing failure operate under abnormal thermal gradients,
+     often linked to heat dissipation failure (HDF).
+
+4. Tool Wear and Torque Analysis:
+   - Non-Failure Avg Tool Wear: 106.69 min | Torque: 39.63 Nm
+   - Failure Avg Tool Wear:     143.78 min | Torque: 50.17 Nm
+   - Finding: High tool wear (>200 min) and extreme torque loads strongly correlate
+     with tool wear failure (TWF) and overstrain failure (OSF).
+
+5. Failure Types and Feature Correlations:
+   - Failure Mode Breakdown: {'TWF': 46, 'HDF': 115, 'PWF': 95, 'OSF': 98, 'RNF': 19}
+   - Top Failure Modes: Heat Dissipation Failure (HDF) and Power Failure (PWF).
+   - Correlation: Strong negative relationship between Rotational Speed and Torque,
+     and strong positive coupling between Air and Process temperatures.
+
+MODEL PERFORMANCE SUMMARY (Stratified 80:20 Split):
+--------------------------------------------------------------------------------
+              Model  Accuracy  Precision  Recall  F1 Score
+Logistic Regression    0.8260     0.1429  0.8235    0.2435
+      Decision Tree    0.9775     0.6825  0.6324    0.6565
+                KNN    0.9750     0.8750  0.3088    0.4565
+        Naive Bayes    0.9590     0.2941  0.1471    0.1961
+
+BEST-FIT MODEL SELECTION:
+--------------------------------------------------------------------------------
+- Selected Model: Decision Tree
+- F1-Score:       0.6565
+- Accuracy:       0.9775
+- Precision:      0.6825
+- Recall:         0.6324
+- Justification: In predictive maintenance, missing a machine failure (False Negative)
+  leads to costly unscheduled downtime and catastrophic damage. High F1-score balances
+  detecting failures (Recall) while avoiding excessive false alarms (Precision).
+
+PREVENTIVE MAINTENANCE RECOMMENDATIONS:
+--------------------------------------------------------------------------------
+1. Dynamic Tool Replacement: Schedule tool changes when tool wear exceeds 180-200 minutes.
+2. Torque & Speed Regulation: Implement automated cutoffs when torque exceeds safe operational thresholds.
+3. Thermal Gradient Monitoring: Continuously track temperature difference between process and air; trigger alerts when dissipation drops below critical levels.
+4. Product-Specific Inspection: Increase inspection frequency for Type-L machines.
