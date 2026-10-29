@@ -1,123 +1,291 @@
-# Predictive Maintenance of Industrial Machines Using Machine Learning
+# PredMaintain — Industrial Machine Predictive Maintenance Analytics
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20Cloud-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://predmaintain.streamlit.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/StutiJain4999/PredMaintain)
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Pandas](https://img.shields.io/badge/pandas-150458?style=flat&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
+[![Plotly](https://img.shields.io/badge/Plotly-Dashboards-3F4F75?style=flat&logo=plotly&logoColor=white)](https://plotly.com/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-An end-to-end Machine Learning and Exploratory Data Analysis (EDA) project built for Continuous Assessment (CA) and portfolio presentation. This project predicts equipment failures in industrial manufacturing machinery using multivariate sensor data, preventing costly unplanned downtime and enabling data-driven condition-based maintenance.
+> **PredMaintain** is an end-to-end Machine Learning intelligence platform and dark-themed interactive analytics dashboard that predicts equipment breakdowns in industrial manufacturing machinery using real-time multivariate sensor telemetry. It empowers plant engineers to shift from costly reactive downtime to proactive condition-based maintenance.
+
+---
+
+## 🌐 Live Application & Demo
+
+* **Production URL:** **[https://predmaintain.streamlit.app](https://predmaintain.streamlit.app)**
+* **Alternative 1-Click Deploy Link:** [Deploy on Streamlit Community Cloud](https://share.streamlit.io/deploy?repository=StutiJain4999/PredMaintain&branch=main&mainModule=app.py)
+* **GitHub Repository:** [https://github.com/StutiJain4999/PredMaintain](https://github.com/StutiJain4999/PredMaintain)
 
 ---
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Problem Statement](#problem-statement)
-3. [Motivation and Real-World Application](#motivation-and-real-world-application)
-4. [Dataset Description & Citation](#dataset-description--citation)
-5. [Repository Structure](#repository-structure)
-6. [Technologies & Python Libraries](#technologies--python-libraries)
-7. [Data Preprocessing & Feature Engineering](#data-preprocessing--feature-engineering)
-8. [Data Leakage Prevention](#data-leakage-prevention)
-9. [Five Project Objectives & Exploratory Data Analysis (EDA)](#five-project-objectives--exploratory-data-analysis-eda)
-   - [Objective 1: Machine Failure Distribution](#objective-1-machine-failure-distribution)
-   - [Objective 2: Product Type & Failure Rates](#objective-2-product-type--failure-rates)
-   - [Objective 3: Temperature Analysis & Thermal Dissipation](#objective-3-temperature-analysis--thermal-dissipation)
-   - [Objective 4: Tool Wear & Torque Stress Analysis](#objective-4-tool-wear--torque-stress-analysis)
-   - [Objective 5: Failure Mode Breakdown & Feature Correlation](#objective-5-failure-mode-breakdown--feature-correlation)
-10. [Machine Learning Models & Evaluation](#machine-learning-models--evaluation)
-    - [Model Comparison Table](#actual-model-comparison-table)
-    - [Model Comparison Visualizations](#model-comparison-visualizations)
-    - [Best-Fit Model Selection & Justification](#best-fit-model-selection--justification)
-    - [Confusion Matrix & Classification Report](#confusion-matrix--classification-report)
-    - [Feature Importance Analysis](#feature-importance-analysis)
-11. [Findings, Conclusions & Recommendations](#findings-conclusions--recommendations)
-12. [Dataset Limitations](#dataset-limitations)
-13. [Installation & Setup](#installation--setup)
-14. [How to Run the Project](#how-to-run-the-project)
-15. [Output Files Generated](#output-files-generated)
-16. [Future Improvements](#future-improvements)
-17. [License & Acknowledgements](#license--acknowledgements)
+3. [Project Objectives](#project-objectives)
+4. [Key Features](#key-features)
+5. [Technology Stack](#technology-stack)
+6. [Project Architecture & Workflow](#project-architecture--workflow)
+7. [Machine Learning Models & Methodology](#machine-learning-models--methodology)
+8. [Dataset Description & Citation](#dataset-description--citation)
+9. [Exploratory Data Analysis & Visualizations](#exploratory-data-analysis--visualizations)
+10. [Installation & Setup Instructions](#installation--setup-instructions)
+11. [Project Directory Structure](#project-directory-structure)
+12. [How to Run the Application Locally](#how-to-run-the-application-locally)
+13. [How to Use the Application](#how-to-use-the-application)
+14. [Model Evaluation Metrics & Results](#model-evaluation-metrics--results)
+15. [Final Decision Tree Architecture](#final-decision-tree-architecture)
+16. [Actionable Maintenance Recommendations](#actionable-maintenance-recommendations)
+17. [Limitations](#limitations)
+18. [Future Enhancements](#future-enhancements)
+19. [Author Information](#author-information)
+20. [License & Acknowledgements](#license--acknowledgements)
 
 ---
 
 ## Project Overview
 
-In contemporary Industry 4.0 environments, modern manufacturing facilities rely on automated milling, turning, and computer numerical control (CNC) machines operating under continuous stress. Traditional maintenance policies typically fall into two sub-optimal extremes:
-* **Reactive Maintenance (Run-to-Failure):** Machines are operated until catastrophic breakdown occurs, incurring extensive equipment damage, safety risks, and expensive unscheduled downtime.
-* **Preventive Maintenance (Time-Based):** Components are serviced or replaced at rigid, fixed calendar intervals, frequently discarding serviceable parts prematurely and driving up operating expenditures.
+In heavy manufacturing facilities, unexpected machine failure halts assembly lines, damages workpieces, and incurs enormous economic losses—often exceeding \$20,000 to \$250,000 per hour. Traditional factory maintenance strategies suffer from inherent inefficiencies:
+* **Reactive Maintenance (Run-to-Failure):** Machinery is run until catastrophic breakdown, causing dangerous tool breakages and unbudgeted downtime.
+* **Preventive Maintenance (Calendar-Based):** Components are replaced at rigid, arbitrary calendar intervals, frequently discarding parts with substantial remaining useful life.
 
-**Predictive Maintenance (PdM)** bridges this divide by continuously evaluating real-time operational sensor telemetry—including rotational speed, torque, air and process temperatures, and cumulative tool wear—to forecast component failure *before* it occurs. This project implements an interpretable, reliable machine learning pipeline that classifies machine health state, identifies high-risk operational regimes, and provides actionable recommendations.
+**PredMaintain** bridges this divide by harnessing physical sensor measurements—including spindle rotational speed, torque, process temperature, ambient air temperature, and cumulative cutting tool wear—to identify deteriorating machine health before catastrophic failure occurs.
 
 ---
 
 ## Problem Statement
 
-Given 10,000 operational records capturing real-time physical sensor telemetry, our goal is to construct a binary classification model that accurately predicts whether an industrial machine will suffer a **Machine failure** (`0 = No Failure`, `1 = Failure`). 
+Given 10,000 operational milling machine telemetry records, build a reliable binary classification and condition-monitoring platform to forecast whether a machine will suffer an imminent **Machine failure** (`0 = Healthy / Normal`, `1 = Machine Failure`).
 
-Key challenges addressed in this project include:
-1. **Severe Class Imbalance:** Failures represent only **3.39%** of operational observations (339 failure cases vs. 9,661 normal operating cases). Standard models optimizing purely for overall accuracy can achieve 96.6% accuracy simply by predicting non-failure every time while missing every breakdown.
-2. **Prevention of Target Leakage:** The dataset includes specific breakdown category indicators (Tool Wear Failure, Heat Dissipation Failure, Power Failure, Overstrain Failure, Random Failure) that are consequential symptoms of failure rather than predictive signals. These must be rigorously isolated during feature preparation.
-3. **Model Interpretability:** Factory maintenance engineers require transparent insight into *which* physical variables (torque, speed, heat differential, tool life) trigger failure to schedule timely physical interventions.
+### Primary Engineering Challenges
+1. **Extreme Class Imbalance:** Failures account for only **3.39%** of operational telemetry (339 failure observations vs. 9,661 normal observations). Naive models optimizing purely for overall accuracy easily achieve 96.6% accuracy simply by predicting "No Failure" 100% of the time while missing every breakdown.
+2. **Target Leakage Prevention:** The dataset includes specific breakdown category columns (`TWF`, `HDF`, `PWF`, `OSF`, `RNF`) that indicate why a machine failed. These symptoms occur *concurrently* with failure and must be strictly excluded from predictive features to prevent data leakage.
+3. **Operational Interpretability:** Plant technicians need transparent visibility into *why* a machine is predicted to fail so they can schedule specific maintenance actions (e.g., swapping tooling vs. cooling the room).
 
 ---
 
-## Motivation and Real-World Application
+## Project Objectives
 
-Unplanned downtime in heavy manufacturing facilities can cost upward of \$20,000 to \$500,000 per hour depending on plant throughput. Implementing this machine learning solution enables:
-* **Dynamic Tool Replacement:** Rather than swapping tooling after arbitrary hours, cutting tools are replaced based on predicted wear limits and torque thresholds.
-* **Real-Time Thermal Monitoring:** Automated alerts trigger when the dissipation delta between process temperature and ambient air narrows.
-* **Process Parameter Regulation:** Detection of dangerous speed-torque operational combinations to prevent motor stalling and shaft overstrain.
+The project rigorously analyzes five distinct analytical objectives:
+
+1. **Objective 1: Machine Failure Distribution Analysis**
+   - Quantify baseline healthy vs. failed machine counts.
+   - Address the 3.39% severe class imbalance and demonstrate why F1-score and Recall are the governing evaluation metrics.
+2. **Objective 2: Product Type & Quality Tier Analysis**
+   - Compare distribution and failure vulnerability across product grades: Low (`L`), Medium (`M`), and High (`H`).
+   - Evaluate stress tolerance differences across product types.
+3. **Objective 3: Temperature Analysis & Thermal Dissipation**
+   - Engineer domain-specific feature: `Temperature Difference = Process temperature [K] - Air temperature [K]`.
+   - Analyze heat dissipation gradients in healthy versus failing machinery.
+4. **Objective 4: Tool Wear, Torque, and Rotational Speed Dynamics**
+   - Investigate mechanical cutting loads (Torque in Nm) and cumulative wear (Tool Wear in minutes).
+   - Evaluate speed-torque inverse kinematics ($r = -0.88$) and identify dangerous operating regimes.
+5. **Objective 5: Failure Mode Breakdown & Cross-Feature Correlations**
+   - Quantify specific failure modes: Heat Dissipation Failure (HDF), Overstrain Failure (OSF), Power Failure (PWF), Tool Wear Failure (TWF), and Random Failure (RNF).
+   - Generate multi-variable correlation heatmaps while maintaining strict target leakage isolation.
+
+---
+
+## Key Features
+
+* 🎛️ **Modern Dark-Themed UI:** Industrial design with `#0B1120` canvas, `#172033` card containers, subtle borders, and vivid status accents.
+* 📊 **Real-Time KPI Metrics:** Dynamic cards displaying total machines, confirmed failures, failure rates, best model, and F1-score.
+* 🔍 **Interactive Data Exploration:** Data table with column searching, multi-select filters (L, M, H, Healthy, Failure), statistics, correlation heatmap, outlier boxplots, and instant CSV export.
+* 🤖 **Multi-Model Benchmark:** Side-by-side comparison of 4 classification algorithms with training latency (ms), Accuracy, Precision, Recall, and F1-Score.
+* 📈 **Interactive Diagnostics:** Confusion matrix heatmaps (TN, FP, FN, TP), classification reports, and feature importance rankings.
+* 🌳 **Interactive Decision Tree Visualizer:** Real-time branch architecture viewer with depth slider (levels 1–5), sample proportions toggle, and 300 DPI image download.
+* 🔮 **Live Prediction Simulator:** Sensor input sliders (Product Type, Air Temp, Process Temp, Speed, Torque, Tool Wear) with real-time failure probability estimation and actionable maintenance recommendations.
+* 🛡️ **Leakage-Safe Architecture:** Excludes row identifiers and failure mode indicators from feature inputs. Preprocessing and scaling fitted strictly on training data.
+
+---
+
+## Technology Stack
+
+* **Language:** Python 3.12+
+* **Web & Dashboard Framework:** [Streamlit](https://streamlit.io/) (v1.35.0+)
+* **Interactive Visualization:** [Plotly Express & Graph Objects](https://plotly.com/python/)
+* **Static Visual Analytics:** Matplotlib & Seaborn (custom pastel palette)
+* **Machine Learning & Preprocessing:** [Scikit-Learn](https://scikit-learn.org/)
+* **Data Ingestion & Processing:** Pandas & NumPy
+* **Cloud Deployment:** Streamlit Community Cloud / Render Blueprint
+
+---
+
+## Project Architecture & Workflow
+
+```mermaid
+flowchart TD
+    A["Raw Dataset\n(dataset/ai4i2020.csv)"] --> B["Data Cleaning & Preprocessing\n(src/data_preprocessing.py)"]
+    B --> C["Feature Engineering\n(Temp Difference = Process - Air)"]
+    C --> D["Leakage Prevention\n(Drop UDI, Product ID, TWF, HDF, PWF, OSF, RNF)"]
+    D --> E["Stratified 80:20 Split\n(random_state=42, stratify=Y)"]
+    E --> F["StandardScaler\n(Fitted strictly on X_train)"]
+    F --> G["Model Training (4 Algorithms)\n(src/model_training.py)"]
+    G --> H["Model Evaluation\n(F1-Score, Recall, Precision, Accuracy)"]
+    H --> I["Best Model Selection\n(Decision Tree Classifier: F1 = 0.6565)"]
+    I --> J["Interactive Streamlit Dashboard\n(app.py - 9 Dark-Themed Pages)"]
+    J --> K["Production Deployment\n(Streamlit Community Cloud / Render)"]
+```
+
+---
+
+## Machine Learning Models & Methodology
+
+To ensure transparent and syllabus-compatible evaluation, four classification algorithms were trained and benchmarked:
+
+1. **Logistic Regression (`model1`):** Linear decision boundary with `class_weight="balanced"`.
+2. **Decision Tree Classifier (`model2`):** Non-linear rule-based tree with `class_weight="balanced"`.
+3. **K-Nearest Neighbors (`model3`):** Distance-based instance learning ($k=5$).
+4. **Gaussian Naïve Bayes (`model4`):** Probabilistic model assuming conditional feature independence.
+
+### Data Leakage Prevention Rules
+* Target variable is strictly `Machine failure`.
+* Identifiers (`UDI`, `Product ID`) and breakdown flags (`TWF`, `HDF`, `PWF`, `OSF`, `RNF`) were excluded before model training.
+* `StandardScaler` was fitted strictly on `X_train` and merely transformed `X_test`.
 
 ---
 
 ## Dataset Description & Citation
 
-This project utilizes the **AI4I 2020 Predictive Maintenance Dataset**, an industry-standard benchmark reflecting real-world milling machine telemetry.
+The project utilizes the **AI4I 2020 Predictive Maintenance Dataset**, an industry benchmark reflecting milling machine telemetry.
 
-* **Total Samples:** 10,000 data points
-* **Features:** 14 original columns
-* **Target Variable:** `Machine failure` (binary flag indicating equipment failure)
-* **Dataset Location in Repository:** `dataset/ai4i2020.csv`
-* **Licence:** Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+* **Total Samples:** 10,000 observations
+* **Target Variable:** `Machine failure` (`0 = Healthy`, `1 = Failure`)
+* **License:** Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+* **Dataset Location:** `dataset/ai4i2020.csv`
 
-### Raw Data Attributes
+### Data Dictionary
 
 | Column Name | Data Type | Units / Range | Description |
 |:---|:---:|:---:|:---|
-| `UDI` | Integer | 1 to 10000 | Unique Row Identifier |
-| `Product ID` | Object / String | L/M/H + serial | Product variant prefix followed by serial number |
-| `Type` | Categorical | L (60%), M (30%), H (10%) | Quality variant: Low (L), Medium (M), High (H) |
-| `Air temperature [K]` | Float | ~295 K – 304 K | Ambient air temperature generated using a random walk |
-| `Process temperature [K]` | Float | ~305 K – 313 K | Temperature of the machine process during operation |
-| `Rotational speed [rpm]` | Integer | ~1168 – 2886 rpm | Spindle rotational speed calculated from power equation |
-| `Torque [Nm]` | Float | ~3.8 – 76.6 Nm | Torque delivered to the workpiece |
-| `Tool wear [min]` | Integer | 0 – 253 min | Cumulative operating time on cutting tool |
-| `Machine failure` | Binary (0 / 1) | 0 (No), 1 (Yes) | Overall machine failure indicator (**Target**) |
-| `TWF` | Binary (0 / 1) | 0 or 1 | Tool Wear Failure mode indicator |
-| `HDF` | Binary (0 / 1) | 0 or 1 | Heat Dissipation Failure mode indicator |
-| `PWF` | Binary (0 / 1) | 0 or 1 | Power Failure mode indicator |
-| `OSF` | Binary (0 / 1) | 0 or 1 | Overstrain Failure mode indicator |
-| `RNF` | Binary (0 / 1) | 0 or 1 | Random Failure mode indicator |
+| `UDI` | Integer | 1 – 10,000 | Row identifier (*Excluded from features*) |
+| `Product ID` | String | L/M/H + serial | Serial number (*Excluded from features*) |
+| `Type` | Categorical | L (60%), M (30%), H (10%) | Product quality grade: Low, Medium, High |
+| `Air temperature [K]` | Float | 295.3 – 304.5 K | Ambient room air temperature |
+| `Process temperature [K]` | Float | 305.7 – 313.8 K | Cutting process temperature |
+| `Rotational speed [rpm]` | Integer | 1,168 – 2,886 rpm | Spindle rotational speed |
+| `Torque [Nm]` | Float | 3.8 – 76.6 Nm | Torque delivered to cutting tool |
+| `Tool wear [min]` | Integer | 0 – 253 min | Cumulative cutting tool operating time |
+| `Machine failure` | Binary | 0 or 1 | Overall failure indicator (**Target**) |
+| `TWF, HDF, PWF, OSF, RNF` | Binary | 0 or 1 | Failure modes (*Excluded to avoid leakage*) |
 
 > **Citation:**
 > Matzka, Stephan. (2020). *AI4I 2020 Predictive Maintenance Dataset*. UCI Machine Learning Repository. [https://doi.org/10.24432/C5HS5C](https://doi.org/10.24432/C5HS5C).
 
 ---
 
-## Repository Structure
+## Exploratory Data Analysis & Visualizations
+
+### Objective 1: Machine Failure Distribution
+* **Healthy Machines (0):** 9,661 units (**96.61%**)
+* **Failed Machines (1):** 339 units (**3.39%**)
+* *Takeaway:* Class imbalance makes accuracy deceptive; models must optimize for F1-score and Recall.
+
+![Machine Failure Distribution](plots/01_machine_failure_distribution.png)
+
+---
+
+### Objective 2: Product Type & Failure Rates
+* **Type L (Low Quality):** 6,000 units (60%) | Failure Rate: **3.92%** (235 failures)
+* **Type M (Medium Quality):** 2,997 units (30%) | Failure Rate: **2.77%** (83 failures)
+* **Type H (High Quality):** 1,003 units (10%) | Failure Rate: **2.09%** (21 failures)
+* *Takeaway:* Type L variants experience nearly double the failure rate of Type H machines.
+
+| Product Type Distribution | Failure Count by Product Type |
+|:---:|:---:|
+| ![Product Type Distribution](plots/02_product_type_distribution.png) | ![Failure by Product Type](plots/03_failure_by_product_type.png) |
+
+---
+
+### Objective 3: Temperature Analysis & Thermal Dissipation
+* **Non-Failed Machines Mean Delta:** **10.02 K**
+* **Failed Machines Mean Delta:** **9.40 K**
+* *Takeaway:* Constricted thermal dissipation gradients ($<9.0\text{ K}$) strongly correlate with Heat Dissipation Failure (HDF).
+
+| Air Temperature Distribution | Temperature Difference vs Failure |
+|:---:|:---:|
+| ![Air Temperature Distribution](plots/04_air_temperature_distribution.png) | ![Temperature Difference vs Failure](plots/05_temperature_difference_vs_failure.png) |
+
+---
+
+### Objective 4: Tool Wear, Torque, and Rotational Speed Dynamics
+* **Tool Wear:** Healthy: **106.69 min** vs. Failing: **143.78 min** (peaks $>200\text{ min}$).
+* **Torque:** Healthy: **39.63 Nm** vs. Failing: **50.17 Nm** (spikes $>55\text{ Nm}$).
+* **Speed vs. Torque:** Inversely related ($r = -0.88$). Failures cluster in low-speed/high-torque (Overstrain) and high-speed/low-torque (Power failure) zones.
+
+| Tool Wear vs Machine Failure | Torque vs Machine Failure |
+|:---:|:---:|
+| ![Tool Wear vs Machine Failure](plots/06_tool_wear_vs_failure.png) | ![Torque vs Machine Failure](plots/07_torque_vs_failure.png) |
+
+---
+
+### Objective 5: Failure Mode Breakdown & Feature Correlation
+* **Breakdown Counts:** HDF (**115**) > OSF (**98**) > PWF (**95**) > TWF (**46**) > RNF (**19**).
+* *Takeaway:* Heat Dissipation and Overstrain represent over 62% of all breakdowns.
+
+| Failure Mode Counts | Feature Correlation Heatmap |
+|:---:|:---:|
+| ![Failure Mode Counts](plots/08_failure_type_counts.png) | ![Correlation Heatmap](plots/09_correlation_heatmap.png) |
+
+---
+
+## Installation & Setup Instructions
+
+### Prerequisites
+* Python 3.10+ (tested on Python 3.12.5)
+* Git
+
+### Step-by-Step Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/StutiJain4999/PredMaintain.git
+   cd PredMaintain
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```powershell
+   # Windows PowerShell
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+
+   # macOS / Linux
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## Project Directory Structure
 
 ```text
-Predictive-Maintenance-of-Industrial-Machines/
+PredMaintain/
 │
-├── README.md                                    # Comprehensive project documentation
-├── Predictive Maintenance of Industrial Machines.py  # End-to-end Python script
+├── .streamlit/
+│   └── config.toml                              # Dark-theme UI configuration for Streamlit
+│
+├── app.py                                       # Main Streamlit Dark-Theme Dashboard (9 Pages)
+├── Predictive Maintenance of Industrial Machines.py  # Standalone Python script (All 5 Objectives & Step 12)
+├── render.yaml                                  # Render Web Service Infrastructure Blueprint
 ├── requirements.txt                             # Pinned project dependencies
-├── .gitignore                                   # Ignore cache, bytecode, env files
+├── .gitignore                                   # Standard cache, bytecode, env exclusions
+├── README.md                                    # Comprehensive project documentation
 │
 ├── dataset/
-│   └── ai4i2020.csv                             # AI4I 2020 dataset (CC BY 4.0)
+│   └── ai4i2020.csv                             # AI4I 2020 Predictive Maintenance Dataset (10,000 rows)
 │
-├── plots/                                       # 13 high-resolution pastel visualizations
+├── src/                                         # Modular, maintainable application architecture
+│   ├── __init__.py
+│   ├── data_preprocessing.py                   # Data cleaning, feature engineering, and leakage prevention
+│   ├── eda.py                                  # Dark-themed Plotly charts for analytical objectives
+│   └── model_training.py                       # 4 ML models training, evaluation, and live inference engine
+│
+├── plots/                                       # 14 high-resolution visualizations (300 DPI)
 │   ├── 01_machine_failure_distribution.png
 │   ├── 02_product_type_distribution.png
 │   ├── 03_failure_by_product_type.png
@@ -130,7 +298,8 @@ Predictive-Maintenance-of-Industrial-Machines/
 │   ├── 10_model_accuracy_comparison.png
 │   ├── 11_model_f1_score_comparison.png
 │   ├── 12_best_model_confusion_matrix.png
-│   └── 13_decision_tree_feature_importance.png
+│   ├── 13_decision_tree_feature_importance.png
+│   └── final_decision_tree.png                  # Full decision tree architecture plot (Levels 1–3)
 │
 └── results/                                     # Machine-generated reports & metrics
     ├── model_comparison.csv                     # Metrics summary table (Accuracy, Precision, Recall, F1)
@@ -140,224 +309,96 @@ Predictive-Maintenance-of-Industrial-Machines/
 
 ---
 
-## Technologies & Python Libraries
+## How to Run the Application Locally
 
-The implementation avoids black-box frameworks and utilizes straightforward, reliable Python scientific stack libraries:
+### 1. Launch the Streamlit Interactive Dashboard (Recommended)
 
-* **Python 3.12+** – Core programming language runtime.
-* **Pandas** – Data ingestion, exploratory manipulation, cleaning, and tabular summary exports.
-* **NumPy** – High-performance vectorized numerical operations and array transformations.
-* **Matplotlib & Seaborn** – Publication-quality visual analytics styled with coordinated pastel palettes.
-* **Scikit-Learn** – Data splitting, feature standardization, model training, cross-model metric evaluations, and decision tree feature importances.
+```bash
+streamlit run app.py
+```
+Open **`http://localhost:8501`** in your browser.
 
----
+### 2. Run the Standalone Python Batch Script
 
-## Data Preprocessing & Feature Engineering
+To regenerate all 14 high-resolution plots and export metric files:
 
-1. **Handling Missing Values:**
-   * Numerical features were checked using `.isnull().sum()` and imputed with column medians (0 missing values present in raw dataset).
-   * Categorical features were verified and filled with column modes.
-2. **Duplicate Detection:**
-   * Examined duplicate records with `data.duplicated().sum()`. Exactly 0 duplicate records were detected; no rows were dropped.
-3. **Categorical Normalization & Encoding:**
-   * String whitespace stripped and capitalized: `data["Type"] = data["Type"].astype(str).str.strip().str.upper()`.
-   * Encoded using dummy one-hot indicators (`Type_L`, `Type_M`) with `drop_first=True` to prevent multicollinearity (dummy variable trap).
-4. **Feature Engineering (`Temperature Difference`):**
-   * Created domain-specific feature: 
-     $$\text{Temperature Difference} = \text{Process temperature [K]} - \text{Air temperature [K]}$$
-   * Physical Rationale: A milling machine dissipates heat produced during cutting into ambient air. When the delta between workpiece heat and ambient air drops below a critical point, heat dissipation fails (HDF), triggering emergency stops.
+```bash
+python "Predictive Maintenance of Industrial Machines.py"
+```
 
----
+To run in automated/headless mode (skipping interactive pop-up windows):
+```powershell
+# Windows PowerShell
+[Environment]::SetEnvironmentVariable('SHOW_PLOTS', '0'); python "Predictive Maintenance of Industrial Machines.py"
 
-## Data Leakage Prevention
-
-> [!IMPORTANT]
-> **Strict Target Leakage Isolation:**
-> The dataset includes five failure-type flags: `TWF` (Tool Wear Failure), `HDF` (Heat Dissipation Failure), `PWF` (Power Failure), `OSF` (Overstrain Failure), and `RNF` (Random Failure). 
-> In a production factory setting, maintenance sensors cannot observe these breakdown flags *before* a failure occurs because they define the failure itself. 
-> To prevent target leakage, all five failure columns along with arbitrary identifiers (`UDI`, `Product ID`) were **strictly excluded** from model training inputs.
-> 
-> Furthermore, the `StandardScaler` was fitted **exclusively on the training dataset** (`X_train`) and merely applied to transform the test set (`X_test`), preventing statistical data leakage from evaluation samples.
+# macOS / Linux
+SHOW_PLOTS=0 python "Predictive Maintenance of Industrial Machines.py"
+```
 
 ---
 
-## Five Project Objectives & Exploratory Data Analysis (EDA)
+## How to Use the Application
 
-All visualizations were generated using coordinated, accessible pastel color codes:
-* **Pastel Aqua (`#A8DADC`)** | **Pastel Pink (`#F4ACB7`)** | **Pastel Lavender (`#BDB2FF`)**
-* **Pastel Peach (`#FFD6A5`)** | **Pastel Green (`#CAFFBF`)** | **Pastel Blue (`#BDE0FE`)** | **Pastel Rose (`#FFC8DD`)**
+The dashboard contains 9 dedicated dark-themed pages accessible via the sidebar navigation:
 
----
-
-### Objective 1: Machine Failure Distribution
-* **Purpose:** Determine the baseline frequency and proportion of machines operating normally versus those experiencing failure.
-* **Actual Findings:**
-  * **No Failure (0):** 9,661 machines (**96.61%**)
-  * **Failure (1):** 339 machines (**3.39%**)
-  * **Insight:** The operational dataset exhibits extreme class imbalance. Because failures represent only ~3.4% of the dataset, naive accuracy is a deceptive metric. Models must be judged on F1-score and Recall.
-
-![Machine Failure Distribution](plots/01_machine_failure_distribution.png)
+1. **📊 Dashboard Overview:** Executive health condition summary, real-time KPI metrics, operational scatter charts, and class distribution donut plots.
+2. **🔍 Data Exploration:** Interactive tabular inspection, column filtering by product type & health status, statistical summaries, correlation heatmap, and instant **CSV export**.
+3. **🎯 Five Objectives:** In-depth interactive exploration of Objectives 1 through 5 with dark-themed Plotly charts and data-driven findings.
+4. **🤖 Machine Learning Models:** Comprehensive benchmark table with execution times (ms), Accuracy, Precision, Recall, and F1-score across all 4 algorithms.
+5. **📈 Model Evaluation:** Interactive confusion matrices, classification reports, and deep-dive discussions on imbalanced data.
+6. **🌳 Decision Tree Visualization:** Interactive tree architecture viewer with depth slider (levels 1–5), node threshold diagnostics, Gini impurity metric, and high-resolution PNG download.
+7. **🔮 Predictions:** Interactive telemetry simulator allowing users to enter sensor parameters, test failure probability, and receive preventive action recommendations.
+8. **💡 Insights & Recommendations:** Practical industrial maintenance thresholds (tool wear limits, torque cutoffs, thermal buffers).
+9. **ℹ️ Dataset Information:** UCI ML repository schema, feature descriptions, and dataset attribution.
 
 ---
 
-### Objective 2: Product Type & Failure Rates
-* **Purpose:** Compare product variants across quality tiers—Low (`L`), Medium (`M`), and High (`H`)—to evaluate if product grade impacts operational reliability.
-* **Actual Findings:**
-  * **Variant Counts:** `L` = 6,000 (60.0%), `M` = 2,997 (29.97%), `H` = 1,003 (10.03%)
-  * **Failure Rates by Variant:**
-    * **Type L (Low Quality):** **3.92%** failure rate (235 failures out of 6,000)
-    * **Type M (Medium Quality):** **2.77%** failure rate (83 failures out of 2,997)
-    * **Type H (High Quality):** **2.09%** failure rate (21 failures out of 1,003)
-  * **Insight:** Low-quality product variants exhibit nearly **double** the failure rate of high-quality variants. Variant L machines operate closer to material stress tolerances and require closer inspection intervals.
+## Model Evaluation Metrics & Results
 
-| Product Type Distribution | Machine Failure by Product Type |
+All models were evaluated on the held-out test partition (**2,000 unseen machine records**) using a stratified 80:20 split (`random_state=42`):
+
+| Model | Accuracy | Precision | Recall | F1 Score | Training Time |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Logistic Regression** | 82.60% | 14.29% | **82.35%** | 0.2435 | ~16 ms |
+| **Decision Tree (Selected Best)** | **97.75%** | **68.25%** | **63.24%** | **0.6565** | ~14 ms |
+| **K-Nearest Neighbors (KNN)** | 97.50% | 87.50% | 30.88% | 0.4565 | ~2 ms |
+| **Gaussian Naïve Bayes** | 95.90% | 29.41% | 14.71% | 0.1961 | ~3 ms |
+
+*Actual data exported to `results/model_comparison.csv`.*
+
+### Metric Comparison Charts
+
+| Accuracy Comparison | F1-Score Comparison |
 |:---:|:---:|
-| ![Product Type Distribution](plots/02_product_type_distribution.png) | ![Failure by Product Type](plots/03_failure_by_product_type.png) |
+| ![Accuracy Comparison](plots/10_model_accuracy_comparison.png) | ![F1 Score Comparison](plots/11_model_f1_score_comparison.png) |
 
 ---
 
-### Objective 3: Temperature Analysis & Thermal Dissipation
-* **Purpose:** Examine air temperature distribution, construct the `Temperature Difference` feature, and compare thermal profiles for failed versus non-failed machines.
-* **Actual Findings:**
-  * **Air Temperature:** Normal Gaussian distribution centered around ~300.0 K (min 295.3 K, max 304.5 K).
-  * **Process Temperature:** Centered around ~310.0 K (min 305.7 K, max 313.8 K).
-  * **Mean Temperature Difference:**
-    * **Non-Failed Machines:** **10.02 K**
-    * **Failed Machines:** **9.40 K**
-  * **Insight:** Machines that experienced failure operated with a significantly smaller temperature delta ($9.40\text{ K}$ vs $10.02\text{ K}$). Insufficient heat dissipation between the spindle and the room environment causes thermal accumulation, precipitating heat dissipation breakdowns.
+### Best Model Selection: **Decision Tree Classifier**
 
-| Air Temperature Distribution | Temperature Difference vs Failure |
-|:---:|:---:|
-| ![Air Temperature Distribution](plots/04_air_temperature_distribution.png) | ![Temperature Difference vs Failure](plots/05_temperature_difference_vs_failure.png) |
+* **Overall Accuracy:** **97.75%**
+* **Precision:** **68.25%**
+* **Recall:** **63.24%**
+* **F1-Score:** **0.6565** (Highest across all evaluated algorithms)
 
----
+#### Why F1-Score Governs Over Accuracy:
+* A baseline model predicting "No Failure" 100% of the time achieves **96.61% accuracy** but misses every single failure.
+* **Cost of False Negatives (Missed Breakdowns):** Broken tooling, scrap workpieces, motor burnouts, and catastrophic downtime.
+* **Cost of False Positives (False Alarms):** A quick 5-minute visual inspection during a shift change.
+* **Conclusion:** The Decision Tree achieves the optimal balance between detecting true breakdowns while avoiding excessive false alarms.
 
-### Objective 4: Tool Wear & Torque Stress Analysis
-* **Purpose:** Evaluate whether mechanical loading (torque in Nm) and cumulative wear time (tool wear in minutes) separate healthy machines from failing machines.
-* **Actual Findings:**
-  * **Tool Wear:**
-    * **Non-Failed Machines:** Mean **106.69 minutes**
-    * **Failed Machines:** Mean **143.78 minutes** (frequently peaking above 200–240 minutes)
-  * **Torque:**
-    * **Non-Failed Machines:** Mean **39.63 Nm** (standard operating range: 30–50 Nm)
-    * **Failed Machines:** Mean **50.17 Nm** (frequently spiking beyond 60 Nm)
-  * **Rotational Speed:**
-    * Non-Failed: Mean **1540.26 rpm** | Failed: Mean **1496.49 rpm**
-  * **Insight:** Machines with high cumulative tool wear combined with torque overload exhibit extreme failure risk, triggering tool wear failure (TWF) and overstrain failure (OSF).
+### Confusion Matrix of Best Model (2,000 Test Machines)
 
-| Tool Wear vs Machine Failure | Torque vs Machine Failure |
-|:---:|:---:|
-| ![Tool Wear vs Machine Failure](plots/06_tool_wear_vs_failure.png) | ![Torque vs Machine Failure](plots/07_torque_vs_failure.png) |
+| Metric | Normal Operation (0) | Machine Failure (1) |
+|:---|:---:|:---:|
+| **Actual Normal (0)** | **TN = 1,912** | **FP = 20** |
+| **Actual Failure (1)** | **FN = 25** | **TP = 43** |
 
----
+![Confusion Matrix](plots/12_best_model_confusion_matrix.png)
 
-### Objective 5: Failure Mode Breakdown & Feature Correlation
-* **Purpose:** Quantify individual failure modes (`TWF`, `HDF`, `PWF`, `OSF`, `RNF`) and examine cross-feature correlations to uncover operational interactions.
-* **Actual Findings:**
-  * **Failure Mode Counts:**
-    * **HDF (Heat Dissipation Failure):** **115** occurrences (most frequent)
-    * **OSF (Overstrain Failure):** **98** occurrences
-    * **PWF (Power Failure):** **95** occurrences
-    * **TWF (Tool Wear Failure):** **46** occurrences
-    * **RNF (Random Failure):** **19** occurrences
-  * **Key Correlations:**
-    * **Torque vs. Rotational Speed:** Strong negative correlation ($r = -0.88$). As torque increases, spindle speed decelerates, reflecting the mechanical power formula $P = \tau \cdot \omega$.
-    * **Air vs. Process Temperature:** Strong positive correlation ($r = +0.88$). Process heat tracks ambient temperature conditions.
-    * **Machine Failure Correlations:** Positively correlated with Torque ($r = +0.19$) and Tool Wear ($r = +0.11$).
+### Feature Importance (Decision Tree)
 
-| Failure Mode Counts | Correlation Heatmap |
-|:---:|:---:|
-| ![Failure Mode Counts](plots/08_failure_type_counts.png) | ![Correlation Heatmap](plots/09_correlation_heatmap.png) |
-
----
-
-## Machine Learning Models & Evaluation
-
-### Train-Test Split & Scaling Methodology
-* **Split Ratio:** 80% Training (8,000 samples) : 20% Testing (2,000 samples).
-* **Stratification:** `stratify=Y` guarantees the 3.39% failure incidence is identically preserved in both training (271 failures) and testing (68 failures) partitions.
-* **Random Seed:** `random_state=42` ensures complete experimental reproducibility.
-* **Feature Scaling:** `StandardScaler` fitted strictly on `X_train` and applied to `X_test`.
-
-### Algorithms Evaluated
-1. **Logistic Regression (`model1`):** Linear decision boundary with `class_weight="balanced"`.
-2. **Decision Tree Classifier (`model2`):** Non-linear rule-based tree with `class_weight="balanced"`.
-3. **K-Nearest Neighbors (`model3`):** Distance-based instance learning ($k=5$).
-4. **Gaussian Naïve Bayes (`model4`):** Probabilistic generative model assuming feature independence.
-
----
-
-### Actual Model Comparison Table
-
-All performance values below were measured by running `Predictive Maintenance of Industrial Machines.py` on the real test dataset:
-
-| Model | Accuracy | Precision | Recall | F1-Score |
-|:---|:---:|:---:|:---:|:---:|
-| **Logistic Regression** | 82.60% (0.8260) | 14.29% (0.1429) | **82.35% (0.8235)** | 0.2435 |
-| **Decision Tree Classifier** | **97.75% (0.9775)** | **68.25% (0.6825)** | **63.24% (0.6324)** | **0.6565** |
-| **K-Nearest Neighbors (KNN)** | 97.50% (0.9750) | 87.50% (0.8750) | 30.88% (0.3088) | 0.4565 |
-| **Gaussian Naïve Bayes** | 95.90% (0.9590) | 29.41% (0.2941) | 14.71% (0.1471) | 0.1961 |
-
-*Data exported to `results/model_comparison.csv`.*
-
----
-
-### Model Comparison Visualizations
-
-| Accuracy Comparison Across Models | F1-Score Comparison Across Models |
-|:---:|:---:|
-| ![Model Accuracy Comparison](plots/10_model_accuracy_comparison.png) | ![Model F1 Score Comparison](plots/11_model_f1_score_comparison.png) |
-
----
-
-### Best-Fit Model Selection & Justification
-
-> [!NOTE]
-> ### Winner: **Decision Tree Classifier**
-> * **Overall Accuracy:** **97.75%**
-> * **Precision:** **68.25%**
-> * **Recall:** **63.24%**
-> * **F1-Score:** **0.6565** (Highest across all evaluated algorithms)
-
-#### Why F1-Score Over Accuracy?
-In predictive maintenance, **class imbalance makes accuracy deceptive**. For example, a "dumb" baseline model that predicts non-failure 100% of the time achieves **96.6% accuracy**, yet its operational utility is zero because every machine failure goes undetected.
-
-#### Navigating the Precision-Recall Trade-off:
-* **The Cost of a False Negative (Missed Breakdown):** In an industrial plant, a missed failure causes sudden tool breakage, damaged workpieces, fire hazards, and millions of dollars in secondary conveyor damage. High **Recall** is crucial.
-* **The Cost of a False Positive (False Alarm):** A false alarm prompts a maintenance technician to visually inspect the tool during a standard shift change, causing negligible disruption.
-* **Why Decision Tree Won:** 
-  * Logistic Regression achieved high recall (82.35%) but suffered from terrible precision (14.29%), creating 494 false alarms per 100 actual issues.
-  * KNN achieved high precision (87.50%) but failed to detect over 69% of machine failures (recall 30.88%).
-  * Gaussian Naïve Bayes struggled due to feature dependencies (speed vs torque).
-  * **Decision Tree** provided the optimal harmonic balance between detecting true failures ($63.24\%$ recall) while maintaining strong operational precision ($68.25\%$), yielding the highest **F1-Score (0.6565)**.
-
----
-
-### Confusion Matrix & Classification Report
-
-For the 2,000 machines in the unseen test set (1,932 healthy, 68 failures):
-
-| Metric | Non-Failure (0) | Failure (1) | Macro Avg | Weighted Avg |
-|:---|:---:|:---:|:---:|:---:|
-| **Precision** | 0.99 | 0.68 | 0.83 | 0.98 |
-| **Recall** | 0.99 | 0.63 | 0.81 | 0.98 |
-| **F1-Score** | 0.99 | 0.66 | 0.82 | 0.98 |
-| **Support** | 1,932 | 68 | 2,000 | 2,000 |
-
-* **True Negatives (TN):** **1,912** healthy machines correctly identified.
-* **False Positives (FP):** **20** healthy machines flagged for unnecessary inspection.
-* **False Negatives (FN):** **25** failures missed.
-* **True Positives (TP):** **43** impending failures caught in advance.
-
-![Best Model Confusion Matrix](plots/12_best_model_confusion_matrix.png)
-
----
-
-### Feature Importance Analysis
-
-From the trained Decision Tree Classifier, feature importances reveal the physical variables governing equipment failure:
-
-| Feature Name | Importance Score | Percentage Contribution |
+| Feature | Importance Score | Percentage Contribution |
 |:---|:---:|:---:|
 | **Rotational speed [rpm]** | 0.3355 | **33.55%** |
 | **Torque [Nm]** | 0.3085 | **30.85%** |
@@ -368,126 +409,52 @@ From the trained Decision Tree Classifier, feature importances reveal the physic
 | **Type_L (Low Quality)** | 0.0049 | **0.49%** |
 | **Type_M (Medium Quality)** | 0.0045 | **0.45%** |
 
-![Decision Tree Feature Importance](plots/13_decision_tree_feature_importance.png)
-
-*Key Takeaway:* Over **89.8%** of the decision tree's predictive power stems from just three core kinematic features: **Rotational Speed (33.55%)**, **Torque (30.85%)**, and **Tool Wear (25.47%)**.
+![Feature Importance](plots/13_decision_tree_feature_importance.png)
 
 ---
 
-## Findings, Conclusions & Recommendations
+## Final Decision Tree Architecture
 
-### Summary of Findings
-1. **Severe Imbalance:** Only 3.39% of operating hours witness failure.
-2. **Kinematic Drivers:** High torque coupled with abnormal rotational speed is the primary driver of equipment overstrain and power failure.
-3. **Tool Lifecycle:** Tool wear beyond 180–200 minutes drastically accelerates failure probability.
-4. **Thermal Gradient Warning:** A narrowing temperature delta between workpiece process and room air precedes heat dissipation failures.
-5. **Quality Disparity:** Type-L products experience higher failure rates (3.92%) compared to Type-H products (2.09%).
+The full architecture of the trained Decision Tree Classifier (`model2`), showing levels 1 through 3 with filled rounded nodes and a blue/orange palette:
 
-### Actionable Preventive Maintenance Recommendations
-1. **Automated Tool Wear Retraction:** Implement hard control limits that trigger automated tool changes once cumulative tool wear surpasses **180 minutes**, well before catastrophic wear at 240+ minutes.
-2. **Torque Limiter Interlocks:** Integrate digital limit switches on CNC motors that throttle feed rates when continuous torque exceeds **55 Nm**.
-3. **Ambient Climate Regulation:** Maintain shop floor air temperatures with HVAC cooling to sustain at least a **10 K dissipation buffer** between cutting process heat and ambient air.
-4. **Targeted Inspections for Variant L:** Increase quality inspection frequencies for machining lines dedicated to Type L workpieces.
+![Final Decision Tree Architecture](plots/final_decision_tree.png)
 
 ---
 
-## Dataset Limitations
+## Actionable Maintenance Recommendations
+
+1. **Automated Tool Wear Retraction:** Enforce cutting tool changes once cumulative wear reaches **180 minutes**, well prior to failure escalation at 240+ minutes.
+2. **Torque Limiter Cutoffs:** Program CNC spindle interlocks to throttle feed rates whenever continuous torque surpasses **55 Nm**.
+3. **Thermal Gradient Maintenance:** Maintain machine shop HVAC cooling to ensure a minimum **10 K thermal gradient** between cutting process heat and ambient room temperature.
+4. **Targeted Inspections for Variant L:** Increase inspection frequencies by 1.5x on production lines running Type L workpieces.
+
+---
+
+## Limitations
 
 > [!WARNING]
-> ### Synthetic Data Disclaimer
-> The AI4I 2020 Predictive Maintenance Dataset is a **synthetic benchmark dataset** generated by mathematical models mimicking milling machine kinematics.
-> While the dataset accurately reflects theoretical relationships (such as power formulas and tool wear equations), its results should **not be interpreted as guaranteed performance metrics** in commercial industrial plants. Real manufacturing environments introduce external factors such as vibration, cutting fluid degradation, electrical harmonics, and sensor drift that require on-site validation and fine-tuning.
+> The AI4I 2020 Predictive Maintenance Dataset is a **synthetic benchmark dataset** generated from physical differential equations. While it accurately reflects theoretical kinematics (power formulas, tool wear curves, and thermal diffusion), commercial factories experience extraneous factors such as operator technique, cutting fluid degradation, electrical harmonic noise, and tool geometry variances. Real-world implementation requires validation using on-site historical vibration and acoustic data.
 
 ---
 
-## Installation & Setup
+## Future Enhancements
 
-### Prerequisites
-* Python 3.10+ (tested on Python 3.12.5)
-* Git
-
-### Step-by-Step Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/StutiJain4999/Predictive-Maintenance-of-Industrial-Machines.git
-   cd Predictive-Maintenance-of-Industrial-Machines
-   ```
-
-2. **Create and activate a virtual environment (optional but recommended):**
-   ```bash
-   # On Windows PowerShell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-
-   # On macOS/Linux
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+1. **Vibration Sensor Ingestion:** Integrate high-frequency accelerometer streams for early bearing fault detection.
+2. **Multi-Class Breakdown Classification:** Train hierarchical secondary models to predict the exact breakdown mode (`TWF`, `HDF`, `PWF`, `OSF`).
+3. **Automated Maintenance Webhooks:** Dispatch automated Slack, SMS, or Jira work-order tickets when high failure probabilities are flagged.
+4. **Remaining Useful Life (RUL) Estimation:** Transition from binary classification to continuous regression modeling for component lifespan forecasting.
 
 ---
 
-## How to Run the Project
+## Author Information
 
-Run the main Python script from the root of the repository:
-
-```bash
-python "Predictive Maintenance of Industrial Machines.py"
-```
-
-### Running in Headless / Automated Mode (Skip GUI Windows)
-If running on a remote server, continuous integration (CI) pipeline, or if you prefer saving plots without interactive pop-ups:
-```powershell
-# Windows PowerShell
-$env:SHOW_PLOTS="0"; python "Predictive Maintenance of Industrial Machines.py"
-
-# Linux / macOS Bash
-SHOW_PLOTS=0 python "Predictive Maintenance of Industrial Machines.py"
-```
-
----
-
-## Output Files Generated
-
-Executing the script automatically creates and populates:
-
-* **`plots/` Directory:**
-  * `01_machine_failure_distribution.png`
-  * `02_product_type_distribution.png`
-  * `03_failure_by_product_type.png`
-  * `04_air_temperature_distribution.png`
-  * `05_temperature_difference_vs_failure.png`
-  * `06_tool_wear_vs_failure.png`
-  * `07_torque_vs_failure.png`
-  * `08_failure_type_counts.png`
-  * `09_correlation_heatmap.png`
-  * `10_model_accuracy_comparison.png`
-  * `11_model_f1_score_comparison.png`
-  * `12_best_model_confusion_matrix.png`
-  * `13_decision_tree_feature_importance.png`
-* **`results/` Directory:**
-  * `model_comparison.csv` – Model performance metrics table.
-  * `classification_report.txt` – Full classification report and confusion matrix.
-  * `project_summary.txt` – Detailed summary of objectives, findings, and maintenance recommendations.
-
----
-
-## Future Improvements
-
-1. **Cost-Sensitive Threshold Tuning:** Adjust probability classification thresholds to optimize for custom business cost matrices (balancing false negative downtime costs against false positive inspection costs).
-2. **Advanced Ensemble Methods:** Evaluate Random Forests, XGBoost, and LightGBM for non-linear boundary refinement.
-3. **Resampling Techniques:** Experiment with SMOTE (Synthetic Minority Over-sampling Technique) or class weighting adjustments to enhance minority class recall.
-4. **Multi-Class Failure Classification:** Train secondary multi-output models to predict the exact failure mode (`TWF`, `HDF`, `PWF`, `OSF`) once machine failure is flagged.
-5. **Interactive Web Dashboard:** Build a Streamlit or Gradio interface enabling shop floor operators to input live sensor telemetry and receive immediate health assessments.
+* **Author:** Stuti Jain
+* **GitHub:** [@StutiJain4999](https://github.com/StutiJain4999)
+* **Project Repository:** [https://github.com/StutiJain4999/PredMaintain](https://github.com/StutiJain4999/PredMaintain)
 
 ---
 
 ## License & Acknowledgements
 
-* **Dataset:** Stephan Matzka, *AI4I 2020 Predictive Maintenance Dataset*, School of Engineering - Technology and Life, Hochschule für Technik und Wirtschaft Berlin, 2020. Released under Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
-* **Code & Documentation:** Developed by **Stuti Jain** for college Continuous Assessment (CA) project and portfolio demonstration.
+* **Dataset Citation:** Stephan Matzka, *AI4I 2020 Predictive Maintenance Dataset*, School of Engineering - Technology and Life, Hochschule für Technik und Wirtschaft Berlin, 2020. Released under Creative Commons Attribution 4.0 International ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+* **Frameworks & Libraries:** Streamlit, Scikit-Learn, Plotly, Pandas, NumPy, Matplotlib, Seaborn.

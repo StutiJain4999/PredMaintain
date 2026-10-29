@@ -28,7 +28,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 
@@ -661,7 +661,7 @@ plt.close()
 
 
 # ==============================================================================
-# STEP 11: PROJECT SUMMARY AND CONCLUSION EXPORT
+# STEP 11: FINAL CONCLUSION & PROJECT SUMMARY EXPORT
 # ==============================================================================
 
 summary_text = f"""PREDICTIVE MAINTENANCE OF INDUSTRIAL MACHINES USING MACHINE LEARNING
@@ -740,3 +740,40 @@ print(f"Saved project summary to: {summary_path}")
 print("\n" + "=" * 50)
 print("PROJECT EXECUTION COMPLETE!")
 print("=" * 50)
+
+
+# ==============================================================================
+# STEP 12: FINAL DECISION TREE VISUALIZATION
+# ==============================================================================
+
+print("\n" + "=" * 50)
+print("STEP 12: FINAL DECISION TREE VISUALIZATION")
+print("=" * 50)
+
+# Ensure plots directory exists automatically
+os.makedirs(plots_dir, exist_ok=True)
+
+# Generate professional, readable Decision Tree graph using trained model2 and X.columns
+plt.figure(figsize=(24, 12), dpi=300)
+plot_tree(
+    model2,
+    max_depth=3,
+    feature_names=X.columns.tolist() if hasattr(X.columns, "tolist") else list(X.columns),
+    class_names=["No Failure", "Failure"],
+    filled=True,
+    rounded=True,
+    fontsize=10,
+    precision=2
+)
+plt.title("Predictive Maintenance — Final Decision Tree", fontsize=18, fontweight="bold", pad=20)
+plt.tight_layout()
+
+final_tree_path = os.path.join(plots_dir, "final_decision_tree.png")
+plt.savefig(final_tree_path, dpi=300, bbox_inches="tight")
+print(f"Final Decision Tree graph saved to: {final_tree_path}")
+
+# Display graph when script runs
+if SHOW_PLOTS:
+    plt.show()
+plt.close()
+
